@@ -7,10 +7,21 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependências
 node_modules
 dist
 dist-ssr
-*.local
+
+# Variáveis de Ambiente e Configurações Sensíveis
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Compilados do Vite
+.vite
+.cache
 
 # Editor directories and files
 .vscode/*
@@ -22,4 +33,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-.env
+
+# Sistema Operacional
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Outros
+*.local
+*.bak
+*.tmp
