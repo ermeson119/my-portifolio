@@ -105,35 +105,36 @@ const GitHubContributions = () => {
           </div>
         </div>
 
-        <div className="flex">
-          <div className="flex flex-col justify-between mr-2">
-            {["Mon", "Wed", "Fri"].map((day, index) => (
-              <span key={index} className="text-gray-400 text-xs">
-                {day}
-              </span>
-            ))}
-          </div>
-          <div className="flex gap-1">
-            {Array.from({ length: Math.ceil(contributions.length / 7) }).map(
-              (_, weekIndex) => (
-                <ul key={weekIndex} className="grid grid-cols-1 gap-1">
-                  {contributions
-                    .slice(weekIndex * 7, weekIndex * 7 + 7)
-                    .map((day, index) => (
+        <div className="flex gap-1">
+          {Array.from({ length: Math.ceil(contributions.length / 7) }).map(
+            (_, weekIndex) => (
+              <ul key={weekIndex} className="grid grid-cols-1 gap-1">
+                {contributions
+                  .slice(weekIndex * 7, weekIndex * 7 + 7)
+                  .map((day, index) => (
+                    <li
+                      key={index}
+                      className={`w-6 h-6 rounded ${
+                        day.contributionCount > 0
+                          ? "bg-green-500"
+                          : "bg-gray-700"
+                      }`}
+                      title={`${day.date}: ${day.contributionCount} contribuições`}
+                    ></li>
+                  ))}
+                {/* Preenche as colunas vazias no final */}
+                {weekIndex === Math.ceil(contributions.length / 7) - 1 &&
+                  Array.from({ length: 7 - (contributions.length % 7) }).map(
+                    (_, emptyIndex) => (
                       <li
-                        key={index}
-                        className={`w-6 h-6 rounded ${
-                          day.contributionCount > 0
-                            ? "bg-green-500"
-                            : "bg-gray-700"
-                        }`}
-                        title={`${day.date}: ${day.contributionCount} contribuições`}
+                        key={`empty-${emptyIndex}`}
+                        className="w-6 h-6 rounded bg-gray-700"
                       ></li>
-                    ))}
-                </ul>
-              )
-            )}
-          </div>
+                    )
+                  )}
+              </ul>
+            )
+          )}
         </div>
       </div>
     </div>

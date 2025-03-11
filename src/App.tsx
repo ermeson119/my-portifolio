@@ -84,7 +84,7 @@ function App() {
               Sobre
             </button>
             <a
-              href="/seu-curriculo.pdf"
+              href="/Curriculo-ErmesonBalbinot.pdf"
               download
               className="text-lg font-medium hover:text-blue-400 transition-colors flex items-center gap-2"
             >
@@ -107,7 +107,7 @@ function App() {
               alt="Ermeson's Profile"
               className="w-50 h-50 rounded-full border-4 border-blue-400 shadow-lg animate-floating"
             />
-            <div className="flex gap-4 mt-4">
+            <div className="flex gap-4 mt-10">
               <a
                 href="https://github.com/ermeson119"
                 target="_blank"
