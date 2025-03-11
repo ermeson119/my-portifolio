@@ -83,6 +83,14 @@ function App() {
             >
               Sobre
             </button>
+            <button
+              onClick={() => scrollToSection("project")}
+              className={`text-lg font-medium hover:text-blue-400 transition-colors ${
+                activeSection === "project" ? "text-blue-400" : "text-white"
+              }`}
+            >
+              Meus Projetos 
+            </button>
             <a
               href="/Curriculo-ErmesonBalbinot.pdf"
               download
@@ -242,7 +250,7 @@ function App() {
       <GitHubContributions />
 
       {/* Projects Section */}
-      <div className="bg-gray-800 py-80">
+      <div id="project" className="bg-gray-800 py-80">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12">
             Meus Projetos
