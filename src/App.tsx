@@ -117,7 +117,7 @@ function App() {
             <h1 className="text-5xl font-bold mb-9">Ermeson Balbinot</h1>
             <span ref={el} className="text-2xl text-blue-400 h-20"></span>
 
-            <button className="flex mt-11 p-5 bg-blue-900 font-bold h-14 w-60 rounded-full">
+            <button className="flex mt-20 p-5 bg-blue-900 font-bold h-14 w-60 rounded-full">
               <a
                 href="/Curriculo-ErmesonBalbinot.pdf"
                 download
