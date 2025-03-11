@@ -100,6 +100,14 @@ function App() {
           <div className="text-left mb-32">
             <h1 className="text-5xl font-bold mb-9">Ermeson Balbinot</h1>
             <span ref={el} className="text-2xl text-blue-400 h-20"></span>
+
+            <button className="flex mt-11 p-5 bg-blue-900 font-bold h-12 w-60 rounded-full"><a
+              href="/Curriculo-ErmesonBalbinot.pdf"
+              download
+              className="text-lg font-medium hover:text-blue-400 transition-colors flex items-center gap-2"
+            >
+             Download Currículo <Download size={20} />
+            </a></button>
           </div>
           <div className="flex flex-col items-center">
             <img
