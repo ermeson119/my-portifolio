@@ -144,7 +144,7 @@ function App() {
       </div>
 
       {/* About Section */}
-      <div id="about" className="bg-gray-900 py-20 mt-72 mb-72">
+      <div id="about" className="bg-gray-900 py-20 mt-16 mb-16">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12">
             Saiba quem sou

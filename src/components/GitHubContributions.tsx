@@ -60,7 +60,7 @@ const GitHubContributions = () => {
   }, [year]);
 
   return (
-    <div className="bg-black py-10 text-white text-center pt-40 pb-44">
+    <div className="bg-black py-10 text-white text-center pt-80 pb-80">
       <h2 className="text-2xl font-bold">Contribuições no GitHub</h2>
 
       {/* Seleção do Ano */}
