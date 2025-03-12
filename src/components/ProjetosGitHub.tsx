@@ -20,8 +20,19 @@ interface ProjetosGitHubProps {
 
 const ProjetosGitHub: React.FC<ProjetosGitHubProps> = ({ repos }) => {
   return (
-    <div id="project-git" className="bg-gray-900 py-20 pb-60">
-      <div className="container mx-auto px-4">
+    <div className="relative w-full h-screen flex justify-center items-center overflow-hidden">
+      {/* Vídeo de fundo */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+      >
+        <source src="/assets/video3.mp4" type="video/mp4" />
+        Seu navegador não suporta vídeos HTML5.
+      </video>
+      <div className="container mx-auto mb-96 px-4">
         <h2 className="text-4xl font-bold text-center mb-44">
           Projetos Github
         </h2>

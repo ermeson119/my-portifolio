@@ -60,81 +60,95 @@ const GitHubContributions = () => {
   }, [year]);
 
   return (
-    <div className="bg-black py-10 text-white text-center pt-80 pb-80">
-      <h2 className="text-2xl font-bold">Contribuições no GitHub</h2>
-
-      {/* Seleção do Ano */}
-      <select
-        value={year}
-        onChange={(e) => setYear(Number(e.target.value))}
-        className="mt-4 p-2 border rounded text-black"
+    <div id="git" className="relative w-full h-screen flex justify-center items-center overflow-hidden">
+      {/* Vídeo de fundo */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover -z-10"
       >
-        {Array.from({ length: 5 }, (_, i) => (
-          <option key={i} value={new Date().getFullYear() - i}>
-            {new Date().getFullYear() - i}
-          </option>
-        ))}
-      </select>
+        <source src="/assets/video3.mp4" type="video/mp4" />
+        Seu navegador não suporta vídeos HTML5.
+      </video>
 
-      {/* Exibição das Contribuições */}
-      <div className="mt-6 flex flex-col items-center">
-        <div className="w-full flex justify-center mb-2">
-          <div className="grid grid-cols-53 gap-8">
-            {[
-              "Mar",
-              "Apr",
-              "May",
-              "Jun",
-              "Jul",
-              "Aug",
-              "Sep",
-              "Oct",
-              "Nov",
-              "Dec",
-              "Jan",
-              "Feb",
-            ].map((month, index) => (
-              <span
-                key={index}
-                className="text-gray-400 text-xs text-center"
-                style={{ gridColumn: `${index * 4 + 1} / span 4` }}
-              >
-                {month}
-              </span>
-            ))}
+      <div className="bg-black bg-opacity-50 py-10 mb-96 text-white text-center  w-full">
+        <h2 className="text-2xl mb-20 font-bold">Contribuições no GitHub</h2>
+
+        {/* Seleção do Ano */}
+        <select
+          value={year}
+          onChange={(e) => setYear(Number(e.target.value))}
+          className="p-2 w-32 text-center border rounded text-black"
+        >
+          {Array.from({ length: 5 }, (_, i) => (
+            <option key={i} value={new Date().getFullYear() - i}>
+              {new Date().getFullYear() - i}
+            </option>
+          ))}
+        </select>
+
+        {/* Exibição das Contribuições */}
+        <div className="mt-6 flex flex-col items-center">
+          <div className="w-full flex justify-center mb-2">
+            <div className="grid grid-cols-53 gap-8">
+              {[
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+                "Jan",
+                "Feb",
+              ].map((month, index) => (
+                <span
+                  key={index}
+                  className="text-gray-400 text-xs text-center"
+                  style={{ gridColumn: `${index * 4 + 1} / span 4` }}
+                >
+                  {month}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="flex gap-1">
-          {Array.from({ length: Math.ceil(contributions.length / 7) }).map(
-            (_, weekIndex) => (
-              <ul key={weekIndex} className="grid grid-cols-1 gap-1">
-                {contributions
-                  .slice(weekIndex * 7, weekIndex * 7 + 7)
-                  .map((day, index) => (
-                    <li
-                      key={index}
-                      className={`w-6 h-6 rounded ${
-                        day.contributionCount > 0
-                          ? "bg-green-500"
-                          : "bg-gray-700"
-                      }`}
-                      title={`${day.date}: ${day.contributionCount} contribuições`}
-                    ></li>
-                  ))}
-                {/* Preenche as colunas vazias no final */}
-                {weekIndex === Math.ceil(contributions.length / 7) - 1 &&
-                  Array.from({ length: 7 - (contributions.length % 7) }).map(
-                    (_, emptyIndex) => (
+          <div className="flex gap-1">
+            {Array.from({ length: Math.ceil(contributions.length / 7) }).map(
+              (_, weekIndex) => (
+                <ul key={weekIndex} className="grid grid-cols-1 gap-1">
+                  {contributions
+                    .slice(weekIndex * 7, weekIndex * 7 + 7)
+                    .map((day, index) => (
                       <li
-                        key={`empty-${emptyIndex}`}
-                        className="w-6 h-6 rounded bg-gray-700"
+                        key={index}
+                        className={`w-6 h-6 rounded ${
+                          day.contributionCount > 0
+                            ? "bg-green-500"
+                            : "bg-gray-700"
+                        }`}
+                        title={`${day.date}: ${day.contributionCount} contribuições`}
                       ></li>
-                    )
-                  )}
-              </ul>
-            )
-          )}
+                    ))}
+                  {/* Preenche as colunas vazias no final */}
+                  {weekIndex === Math.ceil(contributions.length / 7) - 1 &&
+                    Array.from({ length: 7 - (contributions.length % 7) }).map(
+                      (_, emptyIndex) => (
+                        <li
+                          key={`empty-${emptyIndex}`}
+                          className="w-6 h-6 rounded bg-gray-700"
+                        ></li>
+                      )
+                    )}
+                </ul>
+              )
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -63,107 +63,158 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen text-white">
       {/* Navigation Bar */}
-      <nav className="fixed top-0 w-full bg-gray-800 shadow-lg z-50">
+      <nav className="fixed top-0 w-full bg-gray-800 shadow-lg z-50 backdrop-blur-md bg-opacity-80 transition-all duration-300">
         <div className="container mx-auto px-4">
-          {/* Flex container para alinhar os itens */}
-          <div className="flex h-16 items-center space-x-8">
-            {/* Botões e links à esquerda */}
-            <button
-              onClick={() => scrollToSection("home")}
-              className={`text-lg font-medium hover:text-blue-400 transition-colors ${
-                activeSection === "home" ? "text-blue-400" : "text-white"
-              }`}
-            >
-              Home
-            </button>
-            <button
-              onClick={() => scrollToSection("about")}
-              className={`text-lg font-medium hover:text-blue-400 transition-colors ${
-                activeSection === "about" ? "text-blue-400" : "text-white"
-              }`}
-            >
-              Sobre
-            </button>
-            <button
-              onClick={() => scrollToSection("project")}
-              className={`text-lg font-medium hover:text-blue-400 transition-colors ${
-                activeSection === "project" ? "text-blue-400" : "text-white"
-              }`}
-            >
-              Projetos
-            </button>
-            <a
-              href="/Curriculo-ErmesonBalbinot.pdf"
-              download
-              className="text-lg font-medium hover:text-blue-400 transition-colors flex items-center gap-2"
-            >
-              Currículo <Download size={20} />
-            </a>
-
-            {/* Componente no canto direito (ml-auto) */}
-            <div className="flex w-full justify-end p-5">
-              <ListaDeIcones />
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <div id="home" className="container mx-auto px-5 pt-80 pb-70">
-        <div className="flex flex-row items-center justify-between">
-          <div className="text-left mb-32">
-            <h1 className="text-5xl font-bold mb-9">Ermeson Balbinot</h1>
-            <span ref={el} className="text-2xl text-blue-400 h-20"></span>
-
-            <button className="flex mt-20 p-5 bg-blue-900 font-bold h-14 w-60 rounded-full">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex space-x-8">
+              <button
+                onClick={() => scrollToSection("home")}
+                className={`text-lg font-medium hover:text-blue-400 transition-colors ${
+                  activeSection === "home" ? "text-blue-400" : "text-white"
+                }`}
+              >
+                Home
+              </button>
+              <button
+                onClick={() => scrollToSection("about")}
+                className={`text-lg font-medium hover:text-blue-400 transition-colors ${
+                  activeSection === "about" ? "text-blue-400" : "text-white"
+                }`}
+              >
+                Sobre
+              </button>
+              <button
+                onClick={() => scrollToSection("project")}
+                className={`text-lg font-medium hover:text-blue-400 transition-colors ${
+                  activeSection === "project" ? "text-blue-400" : "text-white"
+                }`}
+              >
+                Projetos
+              </button>
+              <button
+                onClick={() => scrollToSection("git")}
+                className={`text-lg font-medium hover:text-blue-400 transition-colors ${
+                  activeSection === "project" ? "text-blue-400" : "text-white"
+                }`}
+              >
+                Git
+              </button>
               <a
                 href="/Curriculo-ErmesonBalbinot.pdf"
                 download
                 className="text-lg font-medium hover:text-blue-400 transition-colors flex items-center gap-2"
               >
-                Download Currículo <Download size={20} />
+                Currículo <Download size={20} />
               </a>
-            </button>
+            </div>
+            <ListaDeIcones />
           </div>
-          <div className="flex flex-col items-center">
-            <img
-              src="https://avatars.githubusercontent.com/u/108281544?s=400&u=f1cd85e875fbf00a544ba21b62de45cba85017b8&v=4"
-              alt="Ermeson's Profile"
-              className="w-50 h-50 rounded-full border-4 border-blue-400 shadow-lg animate-floating"
-            />
-            <div className="flex gap-4 mt-10">
-              <a
-                href="https://github.com/ermeson119"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 hover:text-blue-400 transition-colors"
-              >
-                <Github size={24} />
-              </a>
-              <a
-                href="mailto:ermeson.balbinot10@gmail.com"
-                className="p-2 hover:text-blue-400 transition-colors"
-              >
-                <Mail size={24} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/ermeson-balbinot"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 hover:text-blue-400 transition-colors"
-              >
-                <Linkedin size={24} />
-              </a>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <div
+        id="home"
+        className="relative w-full h-screen flex justify-center items-center overflow-hidden"
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(to bottom, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%)",
+          maskImage:
+            "linear-gradient(to bottom, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%)",
+        }}
+      >
+        {/* Vídeo de fundo */}
+        <video
+          autoPlay
+          loop
+          playsInline
+          className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0) 100%)",
+            maskImage:
+              "linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0) 100%)",
+            backgroundColor: "black", // Garante que a transição não fique branca
+          }}
+        >
+          <source src="/assets/video1.mp4" type="video/mp4" />
+        </video>
+
+        {/* Conteúdo da Home */}
+        <div className="container mx-auto px-5 pt-20 pb-70 relative text-white text-center">
+          <div className="flex flex-row items-center justify-between">
+            <div className="text-left mb-32">
+              <h1 className="text-5xl font-bold mb-9">Ermeson Balbinot</h1>
+              <span ref={el} className="text-2xl text-blue-400 h-20"></span>
+
+              <button className="flex mt-20 p-5 bg-blue-900 font-bold h-14 w-60 rounded-full">
+                <a
+                  href="/Curriculo-ErmesonBalbinot.pdf"
+                  download
+                  className="text-lg font-medium hover:text-blue-400 transition-colors flex items-center gap-2"
+                >
+                  Download Currículo <Download size={20} />
+                </a>
+              </button>
+            </div>
+            <div className="flex flex-col items-center">
+              <img
+                src="https://avatars.githubusercontent.com/u/108281544?s=400&u=f1cd85e875fbf00a544ba21b62de45cba85017b8&v=4"
+                alt="Ermeson's Profile"
+                className="w-50 h-50 rounded-full border-4 border-blue-400 shadow-lg animate-floating"
+              />
+              <div className="flex gap-4 mt-10">
+                <a
+                  href="https://github.com/ermeson119"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 hover:text-blue-400 transition-colors"
+                >
+                  <Github size={24} />
+                </a>
+                <a
+                  href="mailto:ermeson.balbinot10@gmail.com"
+                  className="p-2 hover:text-blue-400 transition-colors"
+                >
+                  <Mail size={24} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/ermeson-balbinot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 hover:text-blue-400 transition-colors"
+                >
+                  <Linkedin size={24} />
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* About Section */}
-      <div id="about" className="bg-gray-900 py-20 mt-16 mb-16">
-        <div className="container mx-auto px-4">
+      <div
+        id="about"
+        className="relative w-full h-screen flex justify-center items-center overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-32 before:bg-gradient-to-b before:to-transparent"
+      >
+        <video
+          autoPlay
+          loop
+          playsInline
+          className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(to top, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0.3) 90%, rgba(0, 0, 0, 0) 100%)",
+            maskImage:
+              "linear-gradient(to top, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0.3) 90%, rgba(0, 0, 0, 0) 100%)",
+          }}
+        >
+          <source src="/assets/video3.mp4" type="video/mp4" />
+        </video>
+
+        <div className="container mx-auto px-4 mt-72">
           <h2 className="text-4xl font-bold text-center mb-12">
             Saiba quem sou
           </h2>
@@ -256,13 +307,10 @@ function App() {
         </div>
       </div>
 
+      <MeusProjetos />
       <GitHubContributions />
 
-      <MeusProjetos />
-
       <ProjetosGitHub repos={repos} />
-
-      
     </div>
   );
 }
