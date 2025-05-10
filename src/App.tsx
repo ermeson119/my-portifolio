@@ -327,7 +327,7 @@ function App() {
 
           {/* Áreas de Estudo */}
           <div className="mb-16">
-            <h3 className="text-2xl md:text-3xl font-bold text-center mb-8">Áreas de Estudo</h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-center mt-12 mb-12">Áreas de Estudo</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {
@@ -371,16 +371,17 @@ function App() {
                 { name: "Bootstrap", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
                 { name: "Java", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
                 { name: "Spring", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
+                { name: "Flask", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" },
               ].map((tech) => (
                 <div 
                   key={tech.name} 
-                  className="tech-icon group relative"
+                  className={`tech-icon group relative ${tech.name === 'Flask' ? 'flask-hover-parent' : ''}`}
                 >
                   <div className="bg-gray-800/50 backdrop-blur-md p-4 rounded-xl transform transition-all duration-300 group-hover:scale-110 group-hover:bg-gray-800/70">
                     <img 
                       src={tech.src} 
                       alt={tech.name} 
-                      className="w-12 h-12 md:w-16 md:h-16 mx-auto filter grayscale group-hover:grayscale-0 transition-all duration-300" 
+                      className={`w-12 h-12 md:w-16 md:h-16 mx-auto filter grayscale group-hover:grayscale-0 transition-all duration-300 ${tech.name === 'Flask' ? 'flask-hover-img' : ''}`}
                     />
                     <p className="text-center mt-2 text-sm text-gray-400 group-hover:text-blue-400 transition-colors">
                       {tech.name}
@@ -499,3 +500,15 @@ function App() {
 }
 
 export default App;
+
+/* Adicionando CSS customizado para o efeito do Flask */
+<style>{`
+  .flask-hover-parent:hover .flask-hover-img {
+    filter: none !important;
+    background: linear-gradient(90deg, #2196f3 0%, #ffeb3b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+`}</style>
