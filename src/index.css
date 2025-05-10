@@ -253,3 +253,41 @@ nav .container {
     font-size: 0.5rem;
   }
 }
+
+
+/* Setas customizadas do Swiper para repositórios */
+.swiper-button-prev-custom, .swiper-button-next-custom {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: filter 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.15);
+  opacity: 0.85;
+}
+.swiper-button-prev-custom {
+  left: -2.5rem;
+}
+.swiper-button-next-custom {
+  right: -2.5rem;
+}
+.swiper-button-prev-custom:hover, .swiper-button-next-custom:hover {
+  filter: brightness(1.2) drop-shadow(0 0 8px #60A5FA);
+  opacity: 1;
+}
+@media (max-width: 1024px) {
+  .swiper-button-prev-custom { left: -1rem; }
+  .swiper-button-next-custom { right: -1rem; }
+}
+@media (max-width: 640px) {
+  .swiper-button-prev-custom, .swiper-button-next-custom {
+    left: 0 !important;
+    right: 0 !important;
+    top: 100%;
+    transform: translateY(0);
+    margin-top: 1rem;
+    position: static;
+    display: inline-block;
+  }
+}
