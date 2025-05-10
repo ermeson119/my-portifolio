@@ -20,96 +20,59 @@ interface ProjetosGitHubProps {
 
 const ProjetosGitHub: React.FC<ProjetosGitHubProps> = ({ repos }) => {
   return (
-    <div className="relative w-full h-screen flex justify-center items-center overflow-hidden">
-      {/* Vídeo de fundo */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
+    <section className="relative py-24">
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
         className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+        style={{
+          filter: "brightness(0.7) contrast(1.1)",
+          objectFit: "cover",
+          objectPosition: "center",
+          minHeight: "100%",
+          width: "100%",
+          height: "100%",
+          transform: "scale(1.1)"
+        }}
       >
         <source src="/assets/video3.mp4" type="video/mp4" />
-        Seu navegador não suporta vídeos HTML5.
       </video>
-      <div className="container mx-auto mb-96 px-4">
-        <h2 className="text-4xl font-bold text-center mb-44">
-          Projetos Github
-        </h2>
+      <div className="container mx-auto px-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Projetos GitHub</h2>
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={30}
           slidesPerView={1}
-          navigation={{
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          }}
+          navigation={{ nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }}
           pagination={{ clickable: true }}
-          breakpoints={{
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
-          className="pb-12 relative"
+          breakpoints={{ 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }}
+          className="pb-16"
         >
           {repos.map((repo) => (
             <SwiperSlide key={repo.id}>
-              <div className="bg-gray-700 rounded-lg p-6 h-full flex flex-col">
-                <h3 className="text-xl font-semibold mb-3">{repo.name}</h3>
-                <p className="text-gray-300 mb-4 flex-grow">
-                  {repo.description || "No description available"}
-                </p>
-                <div className="flex gap-4">
-                  <a
-                    href={repo.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-blue-400 hover:text-blue-300"
-                  >
-                    <Github size={20} />
-                    <span>Código</span>
+              <div className="bg-gray-800 rounded-lg p-8 shadow-lg h-full flex flex-col">
+                <h3 className="text-xl font-semibold mb-4">{repo.name}</h3>
+                <p className="text-gray-300 mb-6 flex-grow">{repo.description || "Sem descrição"}</p>
+                <div className="flex gap-6">
+                  <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
+                    <Github size={18} /> Código
                   </a>
                   {repo.homepage && (
-                    <a
-                      href={repo.homepage}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-blue-400 hover:text-blue-300"
-                    >
-                      <ExternalLink size={20} />
-                      <span>Demo</span>
+                    <a href={repo.homepage} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
+                      <ExternalLink size={18} /> Demo
                     </a>
                   )}
                 </div>
               </div>
             </SwiperSlide>
           ))}
-          <div className="swiper-button-prev absolute -left-12 top-1/2 transform -translate-y-1/2 bg-gray-800 p-2 rounded-full hover:bg-gray-700 transition duration-300 shadow-lg z-10">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="currentColor"
-              className="w-6 h-6 text-blue-400"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </div>
-          <div className="swiper-button-next absolute -right-12 top-1/2 transform -translate-y-1/2 bg-gray-800 p-2 rounded-full hover:bg-gray-700 transition duration-300 shadow-lg z-10">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="currentColor"
-              className="w-6 h-6 text-blue-400"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </div>
+          <div className="swiper-button-prev" />
+          <div className="swiper-button-next" />
         </Swiper>
       </div>
-    </div>
+    </section>
   );
 };
 
