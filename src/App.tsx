@@ -207,12 +207,6 @@ function App() {
                       Download Currículo <Download size={20} />
                     </a>
                   </button>
-                  <a 
-                    href="mailto:ermeson.balbinot10@gmail.com"
-                    className="px-8 py-4 bg-gray-800 font-bold rounded-full hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-white text-lg flex items-center justify-center gap-3"
-                  >
-                    Entre em Contato <Mail size={20} />
-                  </a>
                 </div>
               </div>
               <div className="flex flex-col items-center">
@@ -224,28 +218,32 @@ function App() {
                     className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-blue-400 shadow-xl"
                   />
                 </div>
-                <div className="flex gap-6 mt-8">
+                {/* Ícones de contato abaixo da foto */}
+                <div className="flex gap-6 justify-center w-full mt-8">
                   <a 
-                    href="https://github.com/ermeson119" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="hover:text-blue-400 transition-colors transform hover:scale-110"
+                    href="https://www.linkedin.com/in/ermeson-balbinot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-700 shadow-lg transition-all duration-300"
                   >
-                    <Github size={28} />
+                    <Linkedin size={28} className="text-white" />
+                    <span className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 px-3 py-1 rounded bg-gray-900 text-xs text-white opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none">LinkedIn</span>
                   </a>
                   <a 
-                    href="mailto:ermeson.balbinot10@gmail.com" 
-                    className="hover:text-blue-400 transition-colors transform hover:scale-110"
+                    href="mailto:ermeson.balbinot10@gmail.com"
+                    className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-gray-800 hover:bg-blue-700 shadow-lg transition-all duration-300"
                   >
-                    <Mail size={28} />
+                    <Mail size={28} className="text-white" />
+                    <span className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 px-3 py-1 rounded bg-gray-900 text-xs text-white opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none">Email</span>
                   </a>
                   <a 
-                    href="https://www.linkedin.com/in/ermeson-balbinot" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="hover:text-blue-400 transition-colors transform hover:scale-110"
+                    href="https://www.instagram.com/ermesonbalbinot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-tr from-pink-600 via-yellow-400 to-blue-600 hover:from-pink-700 hover:to-blue-700 shadow-lg transition-all duration-300"
                   >
-                    <Linkedin size={28} />
+                    <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="white"><rect width="18" height="18" x="3" y="3" rx="5" strokeWidth="2"/><circle cx="12" cy="12" r="4" strokeWidth="2"/><circle cx="17" cy="7" r="1.5" fill="white"/></svg>
+                    <span className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 px-3 py-1 rounded bg-gray-900 text-xs text-white opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none">Instagram</span>
                   </a>
                 </div>
               </div>
@@ -453,6 +451,17 @@ function App() {
               <ul className="space-y-3">
                 <li>
                   <a 
+                    href="https://www.linkedin.com/in/ermeson-balbinot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-gray-400 hover:text-blue-400 transition-colors"
+                  >
+                    <Linkedin size={18} />
+                    linkedin.com/in/ermeson-balbinot
+                  </a>
+                </li>
+                <li>
+                  <a 
                     href="mailto:ermeson.balbinot10@gmail.com"
                     className="flex items-center gap-2 text-gray-400 hover:text-blue-400 transition-colors"
                   >
@@ -462,24 +471,13 @@ function App() {
                 </li>
                 <li>
                   <a 
-                    href="https://github.com/ermeson119"
+                    href="https://www.instagram.com/ermesonbalbinot"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-gray-400 hover:text-blue-400 transition-colors"
                   >
-                    <Github size={18} />
-                    github.com/ermeson119
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="https://www.linkedin.com/in/ermeson-balbinot"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-gray-400 hover:text-blue-400 transition-colors"
-                  >
-                    <Linkedin size={18} />
-                    linkedin.com/in/ermeson-balbinot
+                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect width="18" height="18" x="3" y="3" rx="5" strokeWidth="2"/><circle cx="12" cy="12" r="4" strokeWidth="2"/><circle cx="17" cy="7" r="1.5" fill="currentColor"/></svg>
+                    @ermesonbalbinot
                   </a>
                 </li>
               </ul>

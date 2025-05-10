@@ -128,13 +128,9 @@ const GitHubContributions = () => {
   // Função para obter os meses do ano atual
   const getMonthsForYear = () => {
     const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth();
-    
     const months = [];
     for (let i = 0; i < 12; i++) {
-      const monthIndex = (currentMonth - 11 + i + 12) % 12;
-      const date = new Date(currentYear, monthIndex, 1);
+      const date = new Date(currentDate.getFullYear(), currentDate.getMonth() - 11 + i, 1);
       months.push(date.toLocaleString('pt-BR', { month: 'short' }));
     }
     return months;
