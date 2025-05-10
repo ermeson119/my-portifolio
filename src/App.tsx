@@ -274,20 +274,93 @@ function App() {
           <source src="/assets/video3.mp4" type="video/mp4" />
         </video>
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Saiba quem sou</h2>
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-base md:text-lg mb-8">
-              Olá pessoal, eu sou Ermeson, moro no Brasil em Palmas-TO. Atualmente trabalho como analista de sistemas e desenvolvedor na SECAD-TO.
-            </p>
-            <p className="text-base md:text-lg mb-8">Além da programação em si, estudo também...</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-              {["Governança de TI", "Gerência de Projetos", "Engenharia de Requisitos"].map((item) => (
-                <div key={item} className="bg-gray-800 p-4 rounded-lg shadow-md">
-                  <h3 className="text-lg font-semibold">{item}</h3>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-16 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent drop-shadow-lg">
+            Saiba quem sou
+          </h2>
+          <div className="flex justify-center">
+            <div className="bg-gray-900/80 backdrop-blur-lg rounded-3xl shadow-2xl flex flex-col md:flex-row items-center gap-10 px-8 py-10 max-w-3xl w-full border border-blue-900/30">
+              {/* Foto com efeito */}
+              <div className="relative flex-shrink-0">
+                <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500 via-blue-400 to-blue-700 blur-xl opacity-60 animate-pulse"></span>
+                <img
+                  src="https://avatars.githubusercontent.com/u/108281544?s=400&u=f1cd85e875fbf00a544ba21b62de45cba85017b8&v=4"
+                  alt="Ermeson Balbinot"
+                  className="relative w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-blue-500 shadow-xl object-cover z-10"
+                />
+              </div>
+              {/* Texto e botões */}
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-3xl md:text-4xl font-extrabold mb-2 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                  Ermeson Balbinot
+                </h3>
+                <p className="text-lg text-gray-300 mb-6 leading-relaxed max-w-xl mx-auto md:mx-0">
+                  Desenvolvedor Full Stack apaixonado por criar soluções digitais inovadoras.<br/>
+                  Analista de sistemas na SECAD-TO, Palmas-TO.
+                </p>
+                <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-4">
+                  <a 
+                    href="https://github.com/ermeson119" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-5 py-2 rounded-full bg-gray-800 hover:bg-blue-700 text-gray-200 hover:text-white font-medium shadow transition-all duration-300"
+                  >
+                    <Github size={20} /> GitHub
+                  </a>
+                  <a 
+                    href="https://www.linkedin.com/in/ermeson-balbinot" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-5 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-medium shadow transition-all duration-300"
+                  >
+                    <Linkedin size={20} /> LinkedIn
+                  </a>
+                  <a 
+                    href="mailto:ermeson.balbinot10@gmail.com"
+                    className="flex items-center gap-2 px-5 py-2 rounded-full bg-gray-800 hover:bg-blue-700 text-gray-200 hover:text-white font-medium shadow transition-all duration-300"
+                  >
+                    <Mail size={20} /> Email
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Áreas de Estudo */}
+          <div className="mb-16">
+            <h3 className="text-2xl md:text-3xl font-bold text-center mb-8">Áreas de Estudo</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "Governança de TI",
+                  description: "Gestão estratégica de tecnologia da informação e melhores práticas de governança.",
+                  icon: "🏢"
+                },
+                {
+                  title: "Gerência de Projetos",
+                  description: "Metodologias ágeis, gestão de equipes e planejamento estratégico de projetos.",
+                  icon: "📊"
+                },
+                {
+                  title: "Engenharia de Requisitos",
+                  description: "Análise e documentação de requisitos para desenvolvimento de software.",
+                  icon: "📝"
+                }
+              ].map((area, index) => (
+                <div 
+                  key={index}
+                  className="bg-gray-800/50 backdrop-blur-md p-6 rounded-xl hover:bg-gray-800/70 transition-all duration-300 transform hover:scale-105"
+                >
+                  <div className="text-4xl mb-4">{area.icon}</div>
+                  <h4 className="text-xl font-semibold mb-2">{area.title}</h4>
+                  <p className="text-gray-400">{area.description}</p>
                 </div>
               ))}
             </div>
-            <h3 className="text-2xl font-bold mb-8">Tecnologias</h3>
+          </div>
+
+          {/* Tecnologias */}
+          <div>
+            <h3 className="text-2xl md:text-3xl font-bold text-center mb-8">Tecnologias</h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
               {[
                 { name: "React", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
@@ -299,8 +372,20 @@ function App() {
                 { name: "Java", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
                 { name: "Spring", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
               ].map((tech) => (
-                <div key={tech.name} className={`tech-icon ${tech.name.toLowerCase()}`}>
-                  <img src={tech.src} alt={tech.name} className="w-12 h-12 md:w-16 md:h-16 mx-auto" />
+                <div 
+                  key={tech.name} 
+                  className="tech-icon group relative"
+                >
+                  <div className="bg-gray-800/50 backdrop-blur-md p-4 rounded-xl transform transition-all duration-300 group-hover:scale-110 group-hover:bg-gray-800/70">
+                    <img 
+                      src={tech.src} 
+                      alt={tech.name} 
+                      className="w-12 h-12 md:w-16 md:h-16 mx-auto filter grayscale group-hover:grayscale-0 transition-all duration-300" 
+                    />
+                    <p className="text-center mt-2 text-sm text-gray-400 group-hover:text-blue-400 transition-colors">
+                      {tech.name}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
