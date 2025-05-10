@@ -311,6 +311,104 @@ function App() {
       <MeusProjetosEspecificos />
       <GitHubContributions />
       <RepositorioGitHub repos={repos} />
+
+      {/* Footer */}
+      <footer className="relative bg-gray-900/90 backdrop-blur-md py-12">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {/* Coluna 1 - Sobre */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <img
+                  src="https://avatars.githubusercontent.com/u/108281544?s=400&u=f1cd85e875fbf00a544ba21b62de45cba85017b8&v=4"
+                  alt="Logo"
+                  className="w-12 h-12 rounded-full border-2 border-blue-400"
+                />
+                <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                  Ermeson Balbinot
+                </span>
+              </div>
+              <p className="text-gray-400">
+                Desenvolvedor Full Stack apaixonado por criar soluções digitais inovadoras e impactantes.
+              </p>
+            </div>
+
+            {/* Coluna 2 - Links Rápidos */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-white">Links Rápidos</h3>
+              <ul className="space-y-2">
+                {[
+                  { label: "Início", href: "#home" },
+                  { label: "Sobre", href: "#about" },
+                  { label: "Projetos", href: "#projetos-especificos" },
+                  { label: "Repositórios", href: "#repositorios" },
+                  { label: "Contribuições", href: "#git" }
+                ].map((link) => (
+                  <li key={link.href}>
+                    <a 
+                      href={link.href}
+                      className="text-gray-400 hover:text-blue-400 transition-colors"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(link.href.replace('#', ''));
+                      }}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Coluna 3 - Contato */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-white">Contato</h3>
+              <ul className="space-y-3">
+                <li>
+                  <a 
+                    href="mailto:ermeson.balbinot10@gmail.com"
+                    className="flex items-center gap-2 text-gray-400 hover:text-blue-400 transition-colors"
+                  >
+                    <Mail size={18} />
+                    ermeson.balbinot10@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://github.com/ermeson119"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-gray-400 hover:text-blue-400 transition-colors"
+                  >
+                    <Github size={18} />
+                    github.com/ermeson119
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://www.linkedin.com/in/ermeson-balbinot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-gray-400 hover:text-blue-400 transition-colors"
+                  >
+                    <Linkedin size={18} />
+                    linkedin.com/in/ermeson-balbinot
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Linha Divisória */}
+          <div className="border-t border-gray-800 my-8"></div>
+
+          {/* Copyright */}
+          <div className="text-center text-gray-500 text-sm">
+            <p>© {new Date().getFullYear()} Ermeson Balbinot. Todos os direitos reservados.</p>
+            <p className="mt-1">Desenvolvido com ❤️ usando React e Tailwind CSS</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
