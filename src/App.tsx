@@ -6,9 +6,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import GitHubContributions from "./components/GitHubContributions";
-import MeusProjetos from "./components/MeusProjetos";
+import MeusProjetosEspecificos from "./components/MeusProjetosEspecificos";
 import ListaDeIcones from "./components/ListaDeIcones";
-import ProjetosGitHub from "./components/ProjetosGitHub";
+import RepositorioGitHub from "./components/RepositorioGitHub";
 
 
 interface Repository {
@@ -113,38 +113,67 @@ function App() {
           >
             <source src="/assets/video1.mp4" type="video/mp4" />
           </video>
-          <div className="container mx-auto px-6 py-24 text-center">
+          <div className="container mx-auto px-6 py-24">
             <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-              <div className="text-left">
-                <h1 className="text-4xl md:text-5xl font-bold mb-6">Ermeson Balbinot</h1>
-                <div className="typed-container">
-                  <span ref={el} className="text-xl md:text-2xl text-blue-400 inline-block"></span>
+              <div className="text-left max-w-2xl">
+                <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                  Ermeson Balbinot
+                </h1>
+                <div className="typed-container mb-8">
+                  <span ref={el} className="text-2xl md:text-3xl text-gray-300 inline-block"></span>
                 </div>
-                <button className="mt-8 px-6 py-3 bg-blue-900 font-bold rounded-full hover:bg-blue-800 transition-colors">
-                  <a
-                    href="/Curriculo-ErmesonBalbinot.pdf"
-                    download
-                    className="flex items-center gap-2 text-white"
+                <p className="text-lg md:text-xl text-gray-300 mb-8">
+                  Transformando ideias em soluções digitais inovadoras
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-800 font-bold rounded-full hover:from-blue-700 hover:to-blue-900 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    <a
+                      href="/Curriculo-ErmesonBalbinot.pdf"
+                      download
+                      className="flex items-center gap-3 text-white text-lg"
+                    >
+                      Download Currículo <Download size={20} />
+                    </a>
+                  </button>
+                  <a 
+                    href="mailto:ermeson.balbinot10@gmail.com"
+                    className="px-8 py-4 bg-gray-800 font-bold rounded-full hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-white text-lg flex items-center justify-center gap-3"
                   >
-                    Download Currículo <Download size={18} />
+                    Entre em Contato <Mail size={20} />
                   </a>
-                </button>
+                </div>
               </div>
               <div className="flex flex-col items-center">
-                <img
-                  src="https://avatars.githubusercontent.com/u/108281544?s=400&u=f1cd85e875fbf00a544ba21b62de45cba85017b8&v=4"
-                  alt="Ermeson's Profile"
-                  className="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-blue-400 shadow-lg"
-                />
-                <div className="flex gap-4 mt-6">
-                  <a href="https://github.com/ermeson119" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
-                    <Github size={24} />
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full blur-lg opacity-75"></div>
+                  <img
+                    src="https://avatars.githubusercontent.com/u/108281544?s=400&u=f1cd85e875fbf00a544ba21b62de45cba85017b8&v=4"
+                    alt="Ermeson's Profile"
+                    className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-blue-400 shadow-xl"
+                  />
+                </div>
+                <div className="flex gap-6 mt-8">
+                  <a 
+                    href="https://github.com/ermeson119" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="hover:text-blue-400 transition-colors transform hover:scale-110"
+                  >
+                    <Github size={28} />
                   </a>
-                  <a href="mailto:ermeson.balbinot10@gmail.com" className="hover:text-blue-400 transition-colors">
-                    <Mail size={24} />
+                  <a 
+                    href="mailto:ermeson.balbinot10@gmail.com" 
+                    className="hover:text-blue-400 transition-colors transform hover:scale-110"
+                  >
+                    <Mail size={28} />
                   </a>
-                  <a href="https://www.linkedin.com/in/ermeson-balbinot" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
-                    <Linkedin size={24} />
+                  <a 
+                    href="https://www.linkedin.com/in/ermeson-balbinot" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="hover:text-blue-400 transition-colors transform hover:scale-110"
+                  >
+                    <Linkedin size={28} />
                   </a>
                 </div>
               </div>
@@ -207,9 +236,9 @@ function App() {
         </div>
       </section>
 
-      <MeusProjetos />
+      <MeusProjetosEspecificos />
       <GitHubContributions />
-      <ProjetosGitHub repos={repos} />
+      <RepositorioGitHub repos={repos} />
     </div>
   );
 }

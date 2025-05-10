@@ -14,11 +14,11 @@ interface Repository {
   homepage: string;
 }
 
-interface ProjetosGitHubProps {
+interface RepositorioGitHubProps {
   repos: Repository[];
 }
 
-const ProjetosGitHub: React.FC<ProjetosGitHubProps> = ({ repos }) => {
+const RepositorioGitHub: React.FC<RepositorioGitHubProps> = ({ repos }) => {
   return (
     <section className="relative py-24">
       <video 
@@ -40,7 +40,7 @@ const ProjetosGitHub: React.FC<ProjetosGitHubProps> = ({ repos }) => {
         <source src="/assets/video3.mp4" type="video/mp4" />
       </video>
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Repositorios do GitHub</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Repositórios GitHub</h2>
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={30}
@@ -76,4 +76,4 @@ const ProjetosGitHub: React.FC<ProjetosGitHubProps> = ({ repos }) => {
   );
 };
 
-export default ProjetosGitHub;
+export default RepositorioGitHub; 
