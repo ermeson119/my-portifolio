@@ -84,8 +84,9 @@ function App() {
                   {[
                     { id: "home", label: "Início" },
                     { id: "about", label: "Sobre" },
-                    { id: "project", label: "Projetos" },
-                    { id: "git", label: "GitHub" }
+                    { id: "projetos-especificos", label: "Projetos" },
+                    { id: "repositorios", label: "Repositórios" },
+                    { id: "git", label: "Contribuições" }
                   ].map((section) => (
                     <button
                       key={section.id}

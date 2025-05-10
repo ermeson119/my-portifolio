@@ -40,7 +40,7 @@ const MeusProjetosEspecificos: React.FC = () => {
   ];
 
   return (
-    <section className="relative py-24">
+    <section id="projetos-especificos" className="relative py-24">
       <video 
         autoPlay 
         loop 

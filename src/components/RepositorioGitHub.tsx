@@ -20,7 +20,7 @@ interface RepositorioGitHubProps {
 
 const RepositorioGitHub: React.FC<RepositorioGitHubProps> = ({ repos }) => {
   return (
-    <section className="relative py-24">
+    <section id="repositorios" className="relative py-24">
       <video 
         autoPlay 
         loop 
