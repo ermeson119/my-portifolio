@@ -65,30 +65,101 @@ function App() {
   return (
       <div className="min-h-screen text-white">
         {/* Navigation Bar */}
-        <nav className="fixed top-0 w-full bg-gray-900 shadow-lg z-50 backdrop-blur-md bg-opacity-90">
+        <nav className="fixed top-0 w-full bg-gray-900/80 shadow-lg z-50 backdrop-blur-md transition-all duration-300">
           <div className="container mx-auto px-6 py-4">
             <div className="flex flex-wrap items-center justify-between">
-              <div className="flex flex-wrap gap-6">
-                {["home", "about", "project", "git"].map((section) => (
-                  <button
-                    key={section}
-                    onClick={() => scrollToSection(section)}
-                    className={`text-base font-medium hover:text-blue-400 transition-colors ${
-                      activeSection === section ? "text-blue-400" : "text-white"
-                    }`}
-                  >
-                    {section.charAt(0).toUpperCase() + section.slice(1)}
-                  </button>
-                ))}
-                <a
-                  href="/Curriculo-ErmesonBalbinot.pdf"
-                  download
-                  className="text-base font-medium hover:text-blue-400 transition-colors flex items-center gap-2"
-                >
-                  Currículo <Download size={18} />
-                </a>
+              <div className="flex items-center gap-2">
+                <img
+                  src="https://avatars.githubusercontent.com/u/108281544?s=400&u=f1cd85e875fbf00a544ba21b62de45cba85017b8&v=4"
+                  alt="Logo"
+                  className="w-10 h-10 rounded-full border-2 border-blue-400"
+                />
+                <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                  Ermeson Balbinot Andrade
+                </span>
               </div>
-              <ListaDeIcones />
+              
+              <div className="flex items-center gap-8">
+                <div className="hidden md:flex items-center gap-6">
+                  {[
+                    { id: "home", label: "Início" },
+                    { id: "about", label: "Sobre" },
+                    { id: "project", label: "Projetos" },
+                    { id: "git", label: "GitHub" }
+                  ].map((section) => (
+                    <button
+                      key={section.id}
+                      onClick={() => scrollToSection(section.id)}
+                      className={`text-base font-medium transition-all duration-300 hover:text-blue-400 ${
+                        activeSection === section.id 
+                          ? "text-blue-400 scale-110" 
+                          : "text-gray-300"
+                      }`}
+                    >
+                      {section.label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <a
+                    href="/Curriculo-ErmesonBalbinot.pdf"
+                    download
+                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all duration-300 hover:scale-105"
+                  >
+                    <Download size={18} />
+                    <span className="hidden sm:inline">Currículo</span>
+                  </a>
+
+                  <div className="flex items-center gap-4">
+                    <a 
+                      href="https://github.com/ermeson119" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-gray-300 hover:text-blue-400 transition-all duration-300 hover:scale-110"
+                    >
+                      <Github size={20} />
+                    </a>
+                    <a 
+                      href="https://www.linkedin.com/in/ermeson-balbinot" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-gray-300 hover:text-blue-400 transition-all duration-300 hover:scale-110"
+                    >
+                      <Linkedin size={20} />
+                    </a>
+                    <a 
+                      href="mailto:ermeson.balbinot10@gmail.com" 
+                      className="text-gray-300 hover:text-blue-400 transition-all duration-300 hover:scale-110"
+                    >
+                      <Mail size={20} />
+                    </a>
+                  </div>
+
+                  {/* Menu Mobile */}
+                  <button 
+                    className="md:hidden text-gray-300 hover:text-blue-400 transition-colors"
+                    onClick={() => {
+                      // Implementar menu mobile
+                    }}
+                  >
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor" 
+                      className="w-6 h-6"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2} 
+                        d="M4 6h16M4 12h16M4 18h16" 
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </nav>
