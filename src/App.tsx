@@ -231,7 +231,7 @@ function App() {
         </nav>
   
         {/* Hero Section */}
-        <section id="home" className="relative min-h-screen flex items-center">
+        <section id="home" className="relative min-h-screen flex items-center pt-[142px]">
           <video
             autoPlay
             loop
