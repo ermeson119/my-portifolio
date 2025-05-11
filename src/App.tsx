@@ -22,6 +22,7 @@ interface Repository {
 function App() {
   const [repos, setRepos] = useState<Repository[]>([]);
   const [activeSection, setActiveSection] = useState("home");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const el = React.useRef(null);
 
   useEffect(() => {
@@ -68,13 +69,13 @@ function App() {
         <nav className="fixed top-0 w-full bg-gray-900/80 shadow-lg z-50 backdrop-blur-md transition-all duration-300">
           <div className="container mx-auto px-6 py-4">
             <div className="flex flex-wrap items-center justify-between">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 md:gap-2">
                 <img
                   src="https://avatars.githubusercontent.com/u/108281544?s=400&u=f1cd85e875fbf00a544ba21b62de45cba85017b8&v=4"
                   alt="Logo"
                   className="w-10 h-10 rounded-full border-2 border-blue-400"
                 />
-                <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                <span className="text-base sm:text-lg md:text-xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent whitespace-nowrap">
                   Ermeson Balbinot Andrade
                 </span>
               </div>
@@ -100,9 +101,7 @@ function App() {
                       {section.label}
                     </button>
                   ))}
-                </div>
-
-                <div className="flex items-center gap-4">
+                  {/* Botão Currículo no menu desktop */}
                   <a
                     href="/Curriculo-ErmesonBalbinot.pdf"
                     download
@@ -111,8 +110,11 @@ function App() {
                     <Download size={18} />
                     <span className="hidden sm:inline">Currículo</span>
                   </a>
+                </div>
 
-                  <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4">
+                  {/* Ícones de redes sociais só no desktop */}
+                  <div className="hidden md:flex items-center gap-4">
                     <a 
                       href="https://github.com/ermeson119" 
                       target="_blank" 
@@ -138,27 +140,90 @@ function App() {
                   </div>
 
                   {/* Menu Mobile */}
-                  <button 
-                    className="md:hidden text-gray-300 hover:text-blue-400 transition-colors"
-                    onClick={() => {
-                      // Implementar menu mobile
-                    }}
-                  >
-                    <svg 
-                      xmlns="http://www.w3.org/2000/svg" 
-                      fill="none" 
-                      viewBox="0 0 24 24" 
-                      stroke="currentColor" 
-                      className="w-6 h-6"
+                  <div className="relative md:hidden">
+                    <button 
+                      className="text-gray-300 hover:text-blue-400 transition-colors"
+                      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     >
-                      <path 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                        strokeWidth={2} 
-                        d="M4 6h16M4 12h16M4 18h16" 
-                      />
-                    </svg>
-                  </button>
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor" 
+                        className="w-6 h-6"
+                      >
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          strokeWidth={2} 
+                          d="M4 6h16M4 12h16M4 18h16" 
+                        />
+                      </svg>
+                    </button>
+
+                    {/* Menu Mobile Dropdown */}
+                    {isMobileMenuOpen && (
+                      <div className="fixed top-[72px] left-0 w-screen min-h-[calc(100vh-72px)] bg-gray-900/95 backdrop-blur-md shadow-lg z-50 mobile-menu-enter overflow-x-hidden">
+                        <div className="max-w-md mx-auto px-4 py-6">
+                          {/* Cabeçalho do Menu com Botão de Fechar */}
+                          <div className="flex justify-between items-center mb-4 pb-4 border-b border-gray-700">
+                            <h3 className="text-lg font-semibold text-blue-400">Menu</h3>
+                            <button
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className="text-gray-400 hover:text-blue-400 transition-colors p-2"
+                            >
+                              <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke="currentColor" 
+                                className="w-6 h-6"
+                              >
+                                <path 
+                                  strokeLinecap="round" 
+                                  strokeLinejoin="round" 
+                                  strokeWidth={2} 
+                                  d="M6 18L18 6M6 6l12 12" 
+                                />
+                              </svg>
+                            </button>
+                          </div>
+                          <div className="flex flex-col space-y-4">
+                            {[
+                              { id: "home", label: "Início" },
+                              { id: "about", label: "Sobre" },
+                              { id: "projetos-especificos", label: "Projetos" },
+                              { id: "repositorios", label: "Repositórios" },
+                              { id: "git", label: "Contribuições" }
+                            ].map((section) => (
+                              <button
+                                key={section.id}
+                                onClick={() => {
+                                  scrollToSection(section.id);
+                                  setIsMobileMenuOpen(false);
+                                }}
+                                className={`w-full text-lg font-medium transition-all duration-300 hover:text-blue-400 px-4 py-3 text-left ${
+                                  activeSection === section.id 
+                                    ? "text-blue-400" 
+                                    : "text-gray-300"
+                                }`}
+                              >
+                                {section.label}
+                              </button>
+                            ))}
+                            {/* Botão Currículo no menu mobile, igual aos outros itens */}
+                            <a
+                              href="/Curriculo-ErmesonBalbinot.pdf"
+                              download
+                              className="w-full text-lg font-medium transition-all duration-300 hover:text-blue-400 text-gray-300 px-4 py-3 text-left"
+                            >
+                              Currículo
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -185,67 +250,63 @@ function App() {
           >
             <source src="/assets/video1.mp4" type="video/mp4" />
           </video>
-          <div className="container mx-auto px-6 py-24">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-              <div className="text-left max-w-2xl">
-                <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-                  Ermeson Balbinot
-                </h1>
-                <div className="typed-container mb-8">
-                  <span ref={el} className="text-2xl md:text-3xl text-gray-300 inline-block"></span>
-                </div>
-                <p className="text-lg md:text-xl text-gray-300 mb-8">
-                  Transformando ideias em soluções digitais inovadoras
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-800 font-bold rounded-full hover:from-blue-700 hover:to-blue-900 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                    <a
-                      href="/Curriculo-ErmesonBalbinot.pdf"
-                      download
-                      className="flex items-center gap-3 text-white text-lg"
-                    >
-                      Download Currículo <Download size={20} />
-                    </a>
-                  </button>
-                </div>
+          <div className="container mx-auto px-4 sm:px-6 py-16 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 w-full">
+            <div className="text-left md:max-w-2xl w-full flex-1">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent break-words">
+                Ermeson Balbinot
+              </h1>
+              <div className="typed-container mb-6">
+                <span ref={el} className="text-lg sm:text-2xl md:text-3xl text-gray-300 inline-block"></span>
               </div>
-              <div className="flex flex-col items-center">
-                <div className="relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full blur-lg opacity-75"></div>
-                  <img
-                    src="https://avatars.githubusercontent.com/u/108281544?s=400&u=f1cd85e875fbf00a544ba21b62de45cba85017b8&v=4"
-                    alt="Ermeson's Profile"
-                    className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-blue-400 shadow-xl"
-                  />
-                </div>
-                {/* Ícones de contato abaixo da foto */}
-                <div className="flex gap-6 justify-center w-full mt-8">
-                  <a 
-                    href="https://www.linkedin.com/in/ermeson-balbinot"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-700 shadow-lg transition-all duration-300"
-                  >
-                    <Linkedin size={28} className="text-white" />
-                    <span className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 px-3 py-1 rounded bg-gray-900 text-xs text-white opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none">LinkedIn</span>
-                  </a>
-                  <a 
-                    href="mailto:ermeson.balbinot10@gmail.com"
-                    className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-gray-800 hover:bg-blue-700 shadow-lg transition-all duration-300"
-                  >
-                    <Mail size={28} className="text-white" />
-                    <span className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 px-3 py-1 rounded bg-gray-900 text-xs text-white opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none">Email</span>
-                  </a>
-                  <a 
-                    href="https://www.instagram.com/ermesonbalbinot"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-tr from-pink-600 via-yellow-400 to-blue-600 hover:from-pink-700 hover:to-blue-700 shadow-lg transition-all duration-300"
-                  >
-                    <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="white"><rect width="18" height="18" x="3" y="3" rx="5" strokeWidth="2"/><circle cx="12" cy="12" r="4" strokeWidth="2"/><circle cx="17" cy="7" r="1.5" fill="white"/></svg>
-                    <span className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 px-3 py-1 rounded bg-gray-900 text-xs text-white opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none">Instagram</span>
-                  </a>
-                </div>
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 break-words">
+                Transformando ideias em soluções digitais inovadoras
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 w-full">
+                <a
+                  href="/Curriculo-ErmesonBalbinot.pdf"
+                  download
+                  className="w-full sm:w-auto px-6 py-4 bg-gradient-to-r from-blue-600 to-blue-800 font-bold rounded-full hover:from-blue-700 hover:to-blue-900 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 text-white text-base sm:text-lg"
+                >
+                  Download Currículo <Download size={20} />
+                </a>
+              </div>
+            </div>
+            <div className="flex flex-col items-center flex-1 w-full mt-10 md:mt-0">
+              <div className="relative mx-auto">
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full blur-lg opacity-75"></div>
+                <img
+                  src="https://avatars.githubusercontent.com/u/108281544?s=400&u=f1cd85e875fbf00a544ba21b62de45cba85017b8&v=4"
+                  alt="Ermeson's Profile"
+                  className="relative w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full border-4 border-blue-400 shadow-xl mx-auto"
+                />
+              </div>
+              {/* Ícones de contato abaixo da foto */}
+              <div className="flex gap-4 sm:gap-6 justify-center w-full mt-6 flex-wrap">
+                <a 
+                  href="https://www.linkedin.com/in/ermeson-balbinot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-blue-600 hover:bg-blue-700 shadow-lg transition-all duration-300"
+                >
+                  <Linkedin size={24} className="text-white" />
+                  <span className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 px-3 py-1 rounded bg-gray-900 text-xs text-white opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none">LinkedIn</span>
+                </a>
+                <a 
+                  href="mailto:ermeson.balbinot10@gmail.com"
+                  className="group relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gray-800 hover:bg-blue-700 shadow-lg transition-all duration-300"
+                >
+                  <Mail size={24} className="text-white" />
+                  <span className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 px-3 py-1 rounded bg-gray-900 text-xs text-white opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none">Email</span>
+                </a>
+                <a 
+                  href="https://www.instagram.com/ermesonbalbinot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-tr from-pink-600 via-yellow-400 to-blue-600 hover:from-pink-700 hover:to-blue-700 shadow-lg transition-all duration-300"
+                >
+                  <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="white"><rect width="18" height="18" x="3" y="3" rx="5" strokeWidth="2"/><circle cx="12" cy="12" r="4" strokeWidth="2"/><circle cx="17" cy="7" r="1.5" fill="white"/></svg>
+                  <span className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 px-3 py-1 rounded bg-gray-900 text-xs text-white opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none">Instagram</span>
+                </a>
               </div>
             </div>
           </div>
@@ -494,6 +555,38 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Menu Mobile Dropdown */}
+      {isMobileMenuOpen && (
+        <div className="absolute top-full left-0 right-0 bg-gray-900/95 backdrop-blur-md shadow-lg md:hidden mobile-menu-enter">
+          <div className="container mx-auto px-6 py-4">
+            <div className="flex flex-col space-y-4">
+              {[
+                { id: "home", label: "Início" },
+                { id: "about", label: "Sobre" },
+                { id: "projetos-especificos", label: "Projetos" },
+                { id: "repositorios", label: "Repositórios" },
+                { id: "git", label: "Contribuições" }
+              ].map((section) => (
+                <button
+                  key={section.id}
+                  onClick={() => {
+                    scrollToSection(section.id);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`text-base font-medium transition-all duration-300 hover:text-blue-400 px-4 py-3 text-left ${
+                    activeSection === section.id 
+                      ? "text-blue-400" 
+                      : "text-gray-300"
+                  }`}
+                >
+                  {section.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -509,5 +602,21 @@ export default App;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
+  }
+
+  /* Animações do Menu Mobile */
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .mobile-menu-enter {
+    animation: slideDown 0.3s ease-out forwards;
   }
 `}</style>
