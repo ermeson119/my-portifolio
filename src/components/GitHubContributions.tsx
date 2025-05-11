@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Calendar } from "lucide-react";
 
 interface ContributionDay {
   date: string;
@@ -180,17 +181,20 @@ const GitHubContributions = () => {
 
         {/* Seleção do Ano */}
         <div className="flex justify-center mb-8">
-          <select
-            value={year}
-            onChange={(e) => setYear(Number(e.target.value))}
-            className="p-3 border rounded text-black bg-white/90 backdrop-blur-sm"
-          >
-            {Array.from({ length: 5 }, (_, i) => (
-              <option key={i} value={new Date().getFullYear() - i}>
-                {new Date().getFullYear() - i}
-              </option>
-            ))}
-          </select>
+          <div className="flex items-center gap-2 bg-white/90 border border-blue-400 rounded-xl shadow-lg px-4 py-2 focus-within:ring-2 focus-within:ring-blue-400 transition-all">
+            <Calendar size={22} className="text-blue-500" />
+            <select
+              value={year}
+              onChange={(e) => setYear(Number(e.target.value))}
+              className="appearance-none bg-transparent outline-none text-lg text-black font-semibold px-2 py-1 focus:outline-none"
+            >
+              {Array.from({ length: 5 }, (_, i) => (
+                <option key={i} value={new Date().getFullYear() - i}>
+                  {new Date().getFullYear() - i}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Exibição de Erros */}
